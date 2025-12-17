@@ -1,0 +1,254 @@
+:root {
+  --color-texto-principal: #2b2b2b;
+  --color-texto-suave: #555555;
+  --color-fondo: #fdfcfb; /* blanco cálido */
+  --color-lineas: #a3c4f3; /* azul suave */
+  --color-acento: #fbbf6a; /* cálido como fogata */
+  --color-fuego: #ffb74d; /* fuego */
+  --color-flores: #ffb6c1;
+  --sombra-luz: rgba(251, 191, 106, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: var(--color-fondo);
+  color: var(--color-texto-principal);
+  line-height: 1.85;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* PARTICULAS */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* PORTADA */
+.portada {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.portada-contenido {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+  text-shadow: 0 0 15px var(--color-acento);
+}
+
+.portada.visible .portada-contenido {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* CONTENIDO */
+main {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 4.5rem 1.8rem;
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 30px var(--sombra-luz);
+}
+
+.subtitle {
+  font-style: italic;
+  color: var(--color-texto-suave);
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-acento);
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-acento);
+  margin-top: 0.6rem;
+  transition: width 0.6s ease;
+}
+
+h2.reveal.visible::after {
+  width: 40px;
+}
+
+p {
+  margin: 0.9rem 0;
+  color: var(--color-texto-suave);
+}
+
+strong {
+  color: var(--color-acento);
+}
+
+/* FLOR */
+.flor {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 3.5rem 0;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+  transition: transform 0.5s ease;
+  cursor: default;
+  color: var(--color-flores);
+}
+
+.flor:hover {
+  transform: scale(1.4);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* PAUSAS */
+.pausa {
+  margin: 3rem 0;
+  text-align: center;
+  font-size: 1.05rem;
+  color: var(--color-texto-principal);
+}
+
+/* CIERRE */
+.cierre {
+  margin-top: 5rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--color-texto-suave);
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: right;
+  color: var(--color-texto-suave);
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ANIMACION LETRAS */
+@keyframes fadeInLetter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.subtitle span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  main {
+    padding: 3.5rem 1.2rem;
+  }
+}
+
+/* ===================== */
+/* SECCIÓN DE RECUERDOS */
+/* ===================== */
+
+.recuerdos {
+  margin: 6rem 0;
+  text-align: center;
+}
+
+.recuerdos-texto {
+  font-size: 1.05rem;
+  color: var(--color-texto-principal);
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+}
+
+.recuerdos-texto.suave {
+  color: var(--color-texto-suave);
+  font-style: italic;
+  margin-bottom: 3rem;
+}
+
+/* GALERÍA */
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* IMÁGENES */
+
+.galeria img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: brightness(1.05) contrast(0.95);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+/* FOTO VERTICAL */
+
+.galeria img.vertical {
+  grid-column: 1 / -1;
+  height: 420px;
+}
+
+/* HOVER SUAVE */
+
+.galeria img:hover {
+  transform: scale(1.02);
+  filter: brightness(1.1);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .galeria {
+    grid-template-columns: 1fr;
+  }
+
+  .galeria img.vertical {
+    height: auto;
+  }
+}
